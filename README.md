@@ -44,4 +44,10 @@ Some of the old site repos listed below contain [old blog posts](https://github.
 - [brigadehub-archive](https://github.com/sfbrigade/brigadehub-archive) (snapshot from 2018-05-06)
 - [sfbrigade.github.io.old](https://github.com/sfbrigade/sfbrigade.github.io.old) (archived 2018-10-13)
 - [codeforsanfrancisco.org](https://github.com/sfbrigade/codeforsanfrancisco.org) (archived 2020-11-19)
-- [Current site on Wix](https://editor.wix.com/html/editor/web/renderer/edit/dcadfb55-f3c7-4c7d-a6d3-f41bb7b6c303?metaSiteId=0f1cba99-319e-4274-ab7b-f8a661ce7399) 
+- [Current site on Wix](https://editor.wix.com/html/editor/web/renderer/edit/dcadfb55-f3c7-4c7d-a6d3-f41bb7b6c303?metaSiteId=0f1cba99-319e-4274-ab7b-f8a661ce7399)
+
+
+## Packages
+
+- `astro`
+  - Hello, world project from the Astro CLI.  Start the server with `npm run astro:dev`.
