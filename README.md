@@ -30,10 +30,27 @@ Just as a stake in the ground:
 
 - Astro for static site generation
 - TypeScript
-- Some sort of CMS, such as:
-	- builder.io
-  - Storyblok
-  - [Payload](https://payloadcms.com/)
+- Some sort of headless CMS
+- [Pico CSS](https://picocss.com/) as a starting point
+
+
+### CMS
+
+Requirements for the CMS:
+
+- Free or cheap
+- Accounts/roles for at least a few editors to login and create content as needed
+- Reasonably easy-to-use editing UI
+- Image management and automatic resizing of uploaded images
+
+CMS options:
+
+- builder.io
+- Storyblok
+- [Payload](https://payloadcms.com/)
+- [Cosmic](https://www.cosmicjs.com/)
+- [Static CMS](https://www.staticcms.org/)
+- [Puck editor](https://github.com/measuredco/puck)
 
 
 ## Old versions of the site
