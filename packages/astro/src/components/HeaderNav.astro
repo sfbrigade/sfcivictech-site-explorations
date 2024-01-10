@@ -1,0 +1,39 @@
+---
+const routes = [
+	["/wiki", "Wiki"],
+	["/getting-started", "Get Started"],
+	["/events", "Events"],
+	["/projects", "Projects"],
+	["/blog", "Blog"],
+	["/donate", "Donate"],
+	["/about", "About"],
+];
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="container-fluid">
+	<ul>
+		<li>
+			<a href="/" class="contrast">
+				<strong>SF Civic Tech</strong>
+			</a>
+		</li>
+	</ul>
+	<ul>
+		{
+			routes.map(([path, name]) => (
+				<li>
+					<a href={path} aria-current={currentPath === path ? "page" : false}>{name}</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<style>
+	a[aria-current] {
+		--color: var(--contrast);
+		cursor: default;
+		pointer-events: none;
+	}
+</style>
