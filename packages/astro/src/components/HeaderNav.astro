@@ -8,7 +8,10 @@ const routes = [
 	["/donate", "Donate"],
 	["/about", "About"],
 ];
-const currentPath = Astro.url.pathname;
+	// because of annoying differences between dev and build modes, due to this
+	// behavior (https://github.com/withastro/astro/issues/5630), always remove
+	// any trailing slash so currentPath can match the paths above
+const currentPath = Astro.url.pathname.replace(/\/$/, "");
 ---
 
 <nav class="container-fluid">
