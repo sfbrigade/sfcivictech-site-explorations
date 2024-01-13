@@ -5,12 +5,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 const posts = await getCollection("blog");
 ---
 
-<BaseLayout title="Donate">
+<BaseLayout title="Blog">
 	<ul>
 		{
 			posts.map((post) => (
 				<li>
-					<a href={"/blog/" + post.slug}>{post.data.title}</a>
+					<a href={"blog/" + post.slug}>{post.data.title}</a>
 				</li>
 			))
 		}
