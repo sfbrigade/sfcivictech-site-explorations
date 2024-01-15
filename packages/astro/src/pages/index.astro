@@ -4,20 +4,33 @@ import Card from "@/components/Card.astro";
 ---
 
 <BaseLayout title="Home">
+	<h1>We are SF Civic Tech</h1>
 	<p>
-		To get started, open the directory <code>src/pages</code> in your project.<br />
-		<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+		We are a welcoming and inclusive volunteer group of developers, designers,
+		data geeks, and citizen activists who use creative technology to solve civic
+		and social problems.
 	</p>
-	<ul role="list" class="link-card-grid">
+	<p>
+		<a href="getting-started" role="button">Get Started</a>
+	</p>
+	<div class="grid">
 		<Card
-			href="https://docs.astro.build/"
-			title="Documentation"
-			body="Learn how Astro works and explore the official API docs."
+			title="Propose a Project"
+			body="Have any idea to improve community or civic life in San Francisco? We want to hear it."
+			label="Propose a Project"
+			href="https://docs.google.com/forms/d/e/1FAIpQLSexe5qvmJ6LTiU1HcR-XAzlrgPLBudVBPK_ouHeBkFz2JVUHw/viewform"
 		/>
 		<Card
-			href="https://astro.build/integrations/"
-			title="Integrations"
-			body="Supercharge your project with new frameworks and libraries."
+			title="Chat on Slack"
+			body="Join a rich set of active projects on slack, available whenever and wherever you are."
+			label="Join Slack"
+			href="https://c4sf.me/slack"
 		/>
-	</ul>
+		<Card
+			title="Join Our Newsletter"
+			body="Keep in touch with the latest and greatest in the civic tech community."
+			label="Get the Newsletter"
+			href="https://eepurl.com/bfFkF9"
+		/>
+	</div>
 </BaseLayout>
