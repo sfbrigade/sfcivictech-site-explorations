@@ -1,8 +1,8 @@
 ---
-import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getBlogImage } from "@/utils/getBlogImage";
 
 export async function getStaticPaths()
 {
@@ -20,26 +20,14 @@ export async function getStaticPaths()
 
 const { entry: { render, data: { title, image, image_alt = "" } } } = Astro.props;
 const { Content } = await render();
-let imageSrc;
-
-if (image) {
-		// this Vite import method requires that its parameter be a literal string, not even one assembled from other literals
-	const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/blog/*.{jpeg,jpg,png,gif}");
-	const imagePath = "/src/assets/blog/" + image.replace(/^\/img\/uploads\//, "");
-
-	if (images[imagePath]) {
-		imageSrc = images[imagePath]();
-	} else {
-		console.error(`${title} missing image: ${imagePath}`);
-	}
-}
+const imageData = await getBlogImage(image);
 ---
 
 <BaseLayout title={title}>
 	{
-		imageSrc &&
+		imageData &&
 			<p>
-				<Image src={imageSrc} alt={image_alt} />
+				<Image src={imageData} alt={image_alt} />
 			</p>
 	}
 	<Content />
