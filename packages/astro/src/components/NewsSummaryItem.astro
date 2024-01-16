@@ -1,8 +1,9 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { getBlogImage } from "@/utils/getBlogImage";
 
 interface Props {
-	post: object;
+	post: CollectionEntry<"blog">;
 }
 
 const { post: { slug, data: { title, image } } } = Astro.props;

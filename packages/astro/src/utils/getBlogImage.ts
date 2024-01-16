@@ -3,7 +3,7 @@ import type { ImageMetadata } from "astro";
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/blog/*.{jpeg,jpg,png,gif}");
 
 export async function getBlogImage(
-	filename: string): Promise<ImageMetadata | null>
+	filename: string = ""): Promise<ImageMetadata | null>
 {
 	if (filename) {
 			// this Vite import method requires that its parameter be a literal string,
@@ -12,7 +12,6 @@ export async function getBlogImage(
 
 		if (images[imagePath]) {
 			return (await images[imagePath]()).default;
-//			return await images[imagePath]();
 		}
 
 		console.error(`Missing image: ${imagePath}`);
