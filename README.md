@@ -24,6 +24,13 @@ But those are **not** necessarily the goals for this repo.  Here we want to coll
 Once we have some of those questions answered, we can start working on the full implementation of the new site.  We may be able to leverage some of the code from these explorations, but we may also just start over from scratch, so we can be loose with the code in this repo.
 
 
+## Astro proof of concept
+
+A very rough skeleton of the site is now available at https://sfbrigade.github.io/sfcivictech-site-explorations/
+
+The "recent" blog posts are pulled from the markdown files from the old site, and are dynamically generated during the build.  The site has some basic styling from Pico CSS, but is otherwise unthemed.
+
+
 ## Proposed tech stack
 
 Just as a stake in the ground:
