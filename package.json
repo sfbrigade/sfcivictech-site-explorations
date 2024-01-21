@@ -4,6 +4,7 @@
     "./packages/*"
   ],
   "scripts": {
-    "astro:dev": "npm run dev -w astro"
+    "astro:dev": "npm run dev -w astro",
+    "payload:dev": "npm run dev -w payload"
   }
 }

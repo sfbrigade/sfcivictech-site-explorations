@@ -1,7 +1,7 @@
 FROM node:lts-alpine as base
 WORKDIR /base
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json ./
+RUN yarn install
 COPY . .
 
 FROM base AS dev

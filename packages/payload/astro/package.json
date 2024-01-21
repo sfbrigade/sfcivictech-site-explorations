@@ -11,17 +11,17 @@
   "dependencies": {
     "@astrojs/image": "^0.17.3",
     "@astrojs/prefetch": "^0.3.0",
-    "@astrojs/sitemap": "^2.0.2",
-    "@astrojs/tailwind": "4.0.0",
-    "astro": "^2.10.12",
+    "@astrojs/sitemap": "^3.0.5",
+    "@astrojs/tailwind": "5.1.0",
+    "astro": "^4.2.1",
     "css-select": "5.1.0",
-    "sharp": "^0.32.6",
-    "slate-serializers": "0.4.1",
-    "tailwindcss": "^3.3.3"
+    "sharp": "^0.33.2",
+    "slate-serializers": "2.1.6",
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
-    "prettier": "^3.0.2",
-    "prettier-plugin-astro": "^0.11.1",
-    "prettier-plugin-tailwindcss": "^0.5.4"
+    "prettier": "^3.2.4",
+    "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-tailwindcss": "^0.5.11"
   }
 }

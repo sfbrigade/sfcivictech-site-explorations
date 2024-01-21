@@ -40,6 +40,8 @@ Just as a stake in the ground:
 - Some sort of headless CMS
 - [Pico CSS](https://picocss.com/) as a starting point
 
+Another new SSG tool that looks interesting is [Enhance](https://enhance.dev/), though it doesn't have nearly the usage of Astro yet.
+
 
 ### CMS
 
@@ -74,4 +76,8 @@ Some of the old site repos listed below contain [old blog posts](https://github.
 ## Packages
 
 - `astro`
-  - Hello, world project from the Astro CLI.  Start the server with `npm run astro:dev`.
+  - A basic skeleton of the existing site using Astro, including previous blog posts.
+  - Start the server with `npm run astro:dev`.
+- `payload`
+  - A containerized combo of Astro, Payload and MongoDB, built from the [`astroad`](https://github.com/mooxl/astroad) template.
+  - Start the docker containers with `npm run payload:dev`.
