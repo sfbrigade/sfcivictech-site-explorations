@@ -41,22 +41,12 @@ const fullPath = Astro.url.pathname.replace(/\/$/, "");
 const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
 ---
 
-<nav class="nav-header">
-  <!--ul>
-    <li>
-      Heading
-      <ul>
-        <li>item1</li>
-        <li>item2</li>
-        <li>item3</li>
-      </ul>
-    </li>
-  </ul-->
-  <ul class="footer-list">
+<nav class="container">
+  <ul class="grid footer-list container">
     {
       routes.map(([cat, links]) => (
         <li class="footer-list-item">
-          <h3 class="footer-list-cat-name">{cat}</h3>
+          <h3 class="footer-list-cat-name contrast">{cat}</h3>
           <ul class="footer-list-cat-list">
             {links.map(([page, label]) => (
               <li class="footer-list-cat-list-item">
@@ -83,12 +73,9 @@ const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
   }
   .nav-header {
     display: flex;
-    width: 100%;
   }
   .footer-list {
-    display: flex;
-    width: 100%;
-    vertical-align: top;
+    /*display: flex;*/
     align-items: start;
   }
   .footer-list-item {
@@ -97,16 +84,18 @@ const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
     vertical-align: top;
   }
   .footer-list-cat-name {
+    margin: 0;
     text-transform: uppercase;
   }
   .footer-list-cat-list {
-    display: block;
-    vertical-align: top;
-    width: 100%;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
   }
   .footer-list-cat-list-item {
-    display: list-item;
     list-style-type: none;
-    vertical-align: top;
+    margin: 0;
+    padding: 0;
   }
 </style>
