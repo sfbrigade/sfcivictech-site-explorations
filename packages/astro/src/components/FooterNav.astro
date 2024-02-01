@@ -1,4 +1,15 @@
 ---
+import { Icon } from "astro-icon/components";
+
+const icons = {
+  twitter: "twitter",
+  facebook: "facebook",
+  linkedin: "linkedin",
+  github: "github",
+  slack: "slack",
+  meetup: "meetup",
+};
+
 const routes = [
   [
     "Resources",
@@ -25,12 +36,12 @@ const routes = [
   [
     "Elsewhere",
     [
-      ["https://twitter.com/sfbrigade", "twitter"],
-      ["https://www.facebook.com/codeforsanfrancisco", "facebook"],
-      ["https://www.linkedin.com/company/18115347/", "linkedin"],
-      ["https://github.com/sfbrigade/", "github"],
-      ["http://c4sf.me/slack", "slack"],
-      ["https://www.meetup.com/sfcivictech/", "meetup"],
+      ["https://twitter.com/sfbrigade", "twitter", true],
+      ["https://www.facebook.com/codeforsanfrancisco", "facebook", true],
+      ["https://www.linkedin.com/company/18115347/", "linkedin", true],
+      ["https://github.com/sfbrigade/", "github", true],
+      ["http://c4sf.me/slack", "slack", true],
+      ["https://www.meetup.com/sfcivictech/", "meetup", true],
     ],
   ],
 ];
@@ -48,8 +59,15 @@ const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
         <li class="footer-list-item">
           <h3 class="footer-list-cat-name contrast">{cat}</h3>
           <ul class="footer-list-cat-list">
-            {links.map(([page, label]) => (
-              <li class="footer-list-cat-list-item">
+            {links.map(([page, label, needsIcon]) => (
+              <li class="footer-list-cat-list-item container">
+                {needsIcon ? (
+                  <span class="icon-container">
+                    <Icon name={"fa:" + label} />{" "}
+                  </span>
+                ) : (
+                  ""
+                )}{" "}
                 <a
                   href={page}
                   aria-current={currentPage === page ? "page" : false}
@@ -97,5 +115,11 @@ const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
     list-style-type: none;
     margin: 0;
     padding: 0;
+  }
+
+  .icon-container {
+    display: inline-block;
+    min-width: 36px;
+    text-align: center;
   }
 </style>
