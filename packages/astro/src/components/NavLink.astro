@@ -1,0 +1,27 @@
+---
+interface Props {
+	href: string;
+	class?: string;
+}
+
+	// we can destructure `class` from props, but we have to rename it so it won't
+	// trigger syntax errors in the JS
+const { href, class: className } = Astro.props;
+
+	// remove the base URL from the beginning of the current page so we can match
+	// it against the href prop, which shouldn't include any base URL
+const currentPage = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
+const ariaCurrent = currentPage === href ? "page" : false;
+---
+
+<a href={href} class={className} aria-current={ariaCurrent}>
+	<slot />
+</a>
+
+<style>
+	a[aria-current] {
+		--color: var(--contrast);
+		cursor: default;
+		pointer-events: none;
+	}
+</style>

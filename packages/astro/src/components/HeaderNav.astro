@@ -1,78 +1,50 @@
 ---
+import NavLink from "./NavLink.astro";
+import NavDropdown from "./NavDropdown.astro";
+
 const routes = [
 	{ label: "Wiki", page: "wiki" },
-    { label: "Get Started", page: "getting-started" },
-    { label: "Events", page: "events" },
-    { label: "Projects", page: "projects" },
-    { label: "Blog", page: "blog" },
-    { label: "Donate", page: "donate" },
+	{ label: "Get Started", page: "getting-started" },
+	{ label: "Events", page: "events" },
+	{ label: "Projects", page: "projects" },
+	{ label: "Blog", page: "blog" },
+	{ label: "Donate", page: "donate" },
 	{ label: "About", page: "about",
-        pages: [
-            { label: "Code of Conduct", page: "about/code-of-conduct" }
-        ]
-    }
+		pages: [
+			{ label: "Code of Conduct", page: "about/code-of-conduct" }
+		]
+	}
 ];
-// because of annoying differences between dev and build modes, due to this
-// behavior (https://github.com/withastro/astro/issues/5630), always remove
-// any trailing slash so currentPage can match the pages above
-const fullPath = Astro.url.pathname.replace(/\/$/, "");
-const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
 ---
 
-<nav class="container">
-	<ul>
-		<li>
-			<a href="./" class="contrast">
-				<strong>SF Civic Tech</strong>
-			</a>
-		</li>
-	</ul>
-	<ul>
-		{routes.map(route => (
-            <li class={`nav-item ${route.pages?.length > 0 ? "dropdown" : ""}`}>
-                <a href={route.page} aria-current={currentPage === route.page ? "page" : false}>{route.label}</a>
-                {route.pages?.length > 0 && 
-                    <div class="dropdown-content">
-                        {route.pages.map(page => (
-                            <a href={page.page} aria-current={currentPage === page.page ? "page" : false}>{page.label}</a>
-                        ))}
-                    </div>
-                }
-            </li>
-        ))}
-	</ul>
-</nav>
+<header class="container">
+	<nav>
+		<ul>
+			<li>
+				{/* the href of "" on the homepage link here looks a little weird, but the base
+					path is prefixed to these links, so basePath + "" == the root page */}
+				<NavLink href="" class="contrast">
+					<strong>SF Civic Tech</strong>
+				</NavLink>
+			</li>
+		</ul>
+		<ul>
+			{routes.map(({ label, page, pages }) => (
+				<li>
+					<NavLink href={page}>
+						{label}
+					</NavLink>
+					{pages?.length > 0 &&
+						<NavDropdown items={pages} />
+					}
+				</li>
+			))}
+		</ul>
+	</nav>
+</header>
 
 <style>
-	a[aria-current] {
-		--color: var(--contrast);
-		cursor: default;
-		pointer-events: none;
+	header {
+		padding: 0;
 	}
-
-	.dropdown {
-        position: relative;
-        display: inline-block;
-    }
-    
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-    
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-    
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-    
 </style>
