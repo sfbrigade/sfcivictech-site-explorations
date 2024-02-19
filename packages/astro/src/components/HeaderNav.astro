@@ -29,7 +29,7 @@ const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
 	</ul>
 	<ul>
 		{routes.map(route => (
-            <li class={`nav-item ${route.pages ? "dropdown" : ""}`}>
+            <li class={`nav-item ${route.pages?.length > 0 ? "dropdown" : ""}`}>
                 <a href={route.page} aria-current={currentPage === route.page ? "page" : false}>{route.label}</a>
                 {route.pages?.length > 0 && 
                     <div class="dropdown-content">
