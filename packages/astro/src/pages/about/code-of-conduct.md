@@ -2,7 +2,6 @@
 layout: "@/layouts/BaseLayout.astro"
 title: Code of Conduct
 description: Code of Conduct
-output: html_document
 ---
 
 # SF Civic Tech is a space for everyone.
@@ -50,22 +49,22 @@ Below, you’ll find the full text of our Code of Conduct, with more detailed in
 
 ## Anti-Harassment Policy
 
-#### What is harassment?
+### What is harassment?
 Harassment is any unwanted behavior, physical or verbal (or even suggested ), that makes someone feel uncomfortable, humiliated, or mentally distressed. While harassment laws differ between states, most states consider these two main factors when deciding the validity of an accusation:
 
 * Behavior that annoy, threaten, or demean another - whether intentional or unintentional
 * Repetition and severity of the unwanted action.
 
-#### Some examples
+### Some examples
 Harassment includes but is not limited to: offensive verbal or written comments related to gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, religion; sexual images in public spaces; deliberate intimidation; stalking; following; cyberbullying; cyberstalking; harassing photography or recording; sustained disruption of talks or other events; inappropriate physical contact; unwelcome sexual attention; unwarranted exclusion; and patronizing language or action.
 
-#### Our dedication to the community
+### Our dedication to the community
 SF Civic Tech is dedicated to providing a harassment-free experience for everyone regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age, or religion. We do not tolerate harassment of staff, presenters, and participants in any form. Sexual language and imagery are not appropriate for any SF Civic Tech event or network activity, including talks. Anyone in violation of these policies may be expelled from SF Civic Tech network activities, events, and digital forums, at the discretion of the event organizer or forum administrator.
 
-#### Repercussions for harassing someone in our community
+### Repercussions for harassing someone in our community
 If a participant engages in harassing behavior, the organizers may take any action they deem appropriate, including warning the offender or expulsion from SF Civic Tech network activities, events, and digital forums.
 
-#### Speak up
+### Speak up
 If you are being harassed, notice that someone else is being harassed, or have any other concerns, please tell one of the Organizers, Executives, or Executive Director, what you experienced or witnessed at hello@sfcivictech.org or Slack.
 
 If the harassment took place at in-person event, event staff or forum administrators will be happy to help participants contact hotel/venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the event.
