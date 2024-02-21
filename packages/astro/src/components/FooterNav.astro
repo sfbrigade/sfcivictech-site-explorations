@@ -1,0 +1,125 @@
+---
+import { Icon } from "astro-icon/components";
+
+const icons = {
+  twitter: "twitter",
+  facebook: "facebook",
+  linkedin: "linkedin",
+  github: "github",
+  slack: "slack",
+  meetup: "meetup",
+};
+
+const routes = [
+  [
+    "Resources",
+    [
+      [
+        "https://docs.google.com/forms/d/e/1FAIpQLScHe7aWQ-2n3lSTU1WfcK8rhBZp8pkDGH9EcJdbQb5lqMbbzA/viewform",
+        "propose a talk",
+      ],
+      [
+        "https://docs.google.com/forms/d/e/1FAIpQLSexe5qvmJ6LTiU1HcR-XAzlrgPLBudVBPK_ouHeBkFz2JVUHw/viewform",
+        "pitch a project",
+      ],
+    ],
+  ],
+  [
+    "About",
+    [
+      ["about", "about"],
+      ["about", "meet the core team"],
+      ["about", "code of conduct"],
+      ["mailto:hello@sfcivictech.org", "contact"],
+    ],
+  ],
+  [
+    "Elsewhere",
+    [
+      ["https://twitter.com/sfbrigade", "twitter", true],
+      ["https://www.facebook.com/codeforsanfrancisco", "facebook", true],
+      ["https://www.linkedin.com/company/18115347/", "linkedin", true],
+      ["https://github.com/sfbrigade/", "github", true],
+      ["http://c4sf.me/slack", "slack", true],
+      ["https://www.meetup.com/sfcivictech/", "meetup", true],
+    ],
+  ],
+];
+// because of annoying differences between dev and build modes, due to this
+// behavior (https://github.com/withastro/astro/issues/5630), always remove
+// any trailing slash so currentPage can match the pages above
+const fullPath = Astro.url.pathname.replace(/\/$/, "");
+const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
+---
+
+<nav class="container">
+  <ul class="grid footer-list container">
+    {
+      routes.map(([cat, links]) => (
+        <li class="footer-list-item">
+          <h3 class="footer-list-cat-name contrast">{cat}</h3>
+          <ul class="footer-list-cat-list">
+            {links.map(([page, label, needsIcon]) => (
+              <li class="footer-list-cat-list-item container">
+                {needsIcon ? (
+                  <span class="icon-container">
+                    <Icon name={"fa:" + label} />{" "}
+                  </span>
+                ) : (
+                  ""
+                )}{" "}
+                <a
+                  href={page}
+                  aria-current={currentPage === page ? "page" : false}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  a[aria-current] {
+    --color: var(--contrast);
+    cursor: default;
+    pointer-events: none;
+  }
+  .nav-header {
+    display: flex;
+  }
+  .footer-list {
+    /*display: flex;*/
+    align-items: start;
+  }
+  .footer-list-item {
+    flex: 1;
+    list-style-type: none;
+    vertical-align: top;
+  }
+  .footer-list-cat-name {
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .footer-list-cat-list {
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+  }
+  .footer-list-cat-list-item {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .icon-container {
+    display: inline-block;
+    min-width: 36px;
+    text-align: center;
+  }
+</style>
