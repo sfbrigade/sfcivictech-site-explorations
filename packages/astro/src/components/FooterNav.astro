@@ -32,11 +32,11 @@ const columns = [
       ["https://www.facebook.com/codeforsanfrancisco", "facebook", true],
       ["https://www.linkedin.com/company/18115347/", "linkedin", true],
       ["https://github.com/sfbrigade/", "github", true],
-      ["http://c4sf.me/slack", "slack", true],
+      ["https://c4sf.me/slack", "slack", true],
       ["https://www.meetup.com/sfcivictech/", "meetup", true],
     ],
   ],
-];
+] as const;
 ---
 
 <footer class="container">
@@ -48,7 +48,10 @@ const columns = [
 					{links.map(([page, label, needsIcon]) => (
 						<li class="footer-list-cat-list-item ">
 							{needsIcon &&
-								<Icon name={"fa:" + label} class="icon" />
+								// adding a class attribute to the <Icon> component works just fine
+								// but TS complains, so tell it to keep quiet
+								// @ts-ignore
+								<Icon name={"fa:" + label} class={"icon"} />
 							}
 							<NavLink href={page}>
 								{label}

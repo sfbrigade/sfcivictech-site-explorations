@@ -34,7 +34,7 @@ const routes = [
 					<NavLink href={page}>
 						{label}
 					</NavLink>
-					{pages?.length > 0 &&
+					{!!pages?.length &&
 						<NavDropdown items={pages} />
 					}
 				</li>
