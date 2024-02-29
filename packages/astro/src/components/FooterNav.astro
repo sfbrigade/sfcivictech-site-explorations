@@ -1,15 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const icons = {
-  twitter: "twitter",
-  facebook: "facebook",
-  linkedin: "linkedin",
-  github: "github",
-  slack: "slack",
-  meetup: "meetup",
-};
-
 const routes = [
   [
     "Resources",
@@ -44,7 +35,7 @@ const routes = [
       ["https://www.meetup.com/sfcivictech/", "meetup", true],
     ],
   ],
-];
+] as const;
 // because of annoying differences between dev and build modes, due to this
 // behavior (https://github.com/withastro/astro/issues/5630), always remove
 // any trailing slash so currentPage can match the pages above
