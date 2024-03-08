@@ -1,4 +1,6 @@
 ---
+import "@picocss/pico";
+
 interface Props {
 	title: string;
 }
@@ -14,7 +16,6 @@ const { title } = Astro.props;
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.11/css/pico.min.css">
 
 		<title>{title} | SF Civic Tech</title>
 	</head>
@@ -22,3 +23,7 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
+
+<style>
+    @use 'css:pico.min.css';
+</style>
