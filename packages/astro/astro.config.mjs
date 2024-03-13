@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import icon from "astro-icon";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,6 +10,7 @@ export default defineConfig({
 	base: "/sfcivictech-site-explorations/",
 	compressHTML: false,
 	integrations: [
+        react(),
 		icon({
 			include: {
 				// Include all `mdi` icons in the bundle
@@ -18,4 +20,5 @@ export default defineConfig({
 			},
 		}),
 	],
+    output: "hybrid"
 });

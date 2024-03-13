@@ -1,7 +1,117 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import OnboardingForm from "../components/OnboardingForm.tsx";
+import OnboardingFormAstro from "../components/OnboardingForm.tsx";
+
+import { Client } from '@notionhq/client';
+
+const notion = new Client({
+    auth: "", //insert Notion API key, .env doesnt work here
+});
+
+if (Astro.request.method === "POST") {
+    try{
+        console.log("POST request received");
+
+
+        const contentType = Astro.request.headers.get('content-type');
+        const isFormData = contentType && contentType.includes('multipart/form-data');
+
+        if (isFormData) {
+            const data = await Astro.request.formData();
+            console.log(data);
+
+            console.log("Creating a new record in Notion");
+            await notion.pages.create({
+                // Your Notion page creation code here
+                "parent": {
+                    "type": "database_id",
+                    "database_id": "3664f66c7e894dd296b9182534f3b8db"
+                },
+                "properties": {
+                    "Full Name": {
+                        "title": [
+                            {
+                                "text": {
+                                    "content": String(data.get('name'))
+                                }
+                            }
+                        ]
+                    },
+                    "Email": {
+                        "email": String(data.get('email'))
+                    },
+                    "LinkedIn": {
+                        "url": String(data.get('linkedin'))
+                    },
+                    "Subscribe to newsletter": {
+                        "checkbox": data.get('newsletter') === 'on' ? true : false
+                    }
+                }
+            });
+
+        } else {
+            console.error("Invalid content type. Expected multipart/form-data.");
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
 ---
 
+
 <BaseLayout title="Getting Started">
-	<p>Getting started</p>
+
+    <h1>Getting Started with Node & Astro & React</h1>
+    <OnboardingForm client:load />
+    <h1>Getting Started Only Astro & React:D</h1>
+    <OnboardingFormAstro client:load />
+    <h1>Getting Started Only Astro</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label>
+            Full Name:
+            <input type="text" name="name" required />
+        </label>
+        
+        <label>
+            Email:
+            <input type="email" name="email" required />
+        </label>
+        
+        <label>
+            LinkedIn URL:
+            <input type="url" name="linkedin" required />
+        </label>
+        
+        <label>
+            Subscribe to our newsletter?<br />
+            <input type="checkbox" name="newsletter" />
+        </label>
+        
+        
+        <label>
+            Subscribe to role updates?<br />
+            <input type="checkbox" name="roleUpdates" />
+        </label>
+
+        <label>
+            How would you like to be involved?
+            <select name="How would you like to be involved?">
+                <option value="Mentor">Mentor</option>
+                <option value="Lead a project">Mentee</option>
+                <option value="Volunteer">Both</option>
+            </select>
+        </label>
+        
+        <label>
+            Role:
+            <input type="text" name="role" required />
+        </label>
+        
+        <button>Submit</button>
+    </form>
+
 </BaseLayout>
+
