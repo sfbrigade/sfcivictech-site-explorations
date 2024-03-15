@@ -7,7 +7,7 @@ import OnboardingFormAstro from "../components/OnboardingForm.tsx";
 import { Client } from '@notionhq/client';
 
 const notion = new Client({
-    auth: "", //insert Notion API key, .env doesnt work here
+    auth: "secret_DhFwgk765hxLuXWMOKHhiFWTDA55OOhrw32HM4Cv499", //insert Notion API key, .env doesnt work here, exposed here
 });
 
 if (Astro.request.method === "POST") {
@@ -24,7 +24,7 @@ if (Astro.request.method === "POST") {
 
             console.log("Creating a new record in Notion");
             await notion.pages.create({
-                // Your Notion page creation code here
+                // Notion CRUD API
                 "parent": {
                     "type": "database_id",
                     "database_id": "3664f66c7e894dd296b9182534f3b8db"

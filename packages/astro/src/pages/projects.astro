@@ -1,7 +1,39 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import * as proj1 from "../content/projects/test_project_1.md";
+
+import grayMatter from 'gray-matter';
+import { marked } from 'marked';
+const response = await fetch('https://raw.githubusercontent.com/MarcosG119/test-repository-for-md-html/main/test_project-1.md');
+const markdownText  = await response.text();
+const {data, content} = grayMatter(markdownText);
+
+const htmlContent = marked(content);
 ---
 
 <BaseLayout title="Projects">
 	<p>Projects</p>
+
+    <h1> Test project from local md </h1>
+
+    <div>
+        <h2> Project title: {proj1.frontmatter.title} </h2>
+        <h3> Leader: {proj1.frontmatter.leader } </h3>
+        <p> description: {proj1.frontmatter.description }</p>
+    </div>
+
+    <h1> Test project from url </h1>
+    <div>
+        <h2> {data.title} </h2>
+        <h3> Leader: {data.leader } </h3>
+        <p> {data.description }</p>
+
+
+        <h2> This content below is the whole markdown generated as html. It does not recognize the frontmatter. </h2>
+        <article set:html={htmlContent} />
+    
+    </div>
 </BaseLayout>
+
+
