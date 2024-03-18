@@ -7,14 +7,28 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint:es": "eslint .",
+    "lint:css": "stylelint \"**/*.{astro,css}\"",
+    "lint:fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
+    "lint": "(npm run lint:es || cd .) && npm run lint:css"
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@iconify-json/fa": "^1.1.8",
+    "@stylistic/eslint-plugin": "^1.7.0",
+    "@stylistic/stylelint-config": "^1.0.1",
+    "@stylistic/stylelint-plugin": "^2.1.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@iconify-json/fa": "^1.1.8",
     "@picocss/pico": "^2.0.6",
     "astro": "^4.0.6",
     "astro-icon": "^1.0.4",
-    "typescript": "^5.3.3"
+    "eslint-plugin-astro": "^0.31.4",
+    "postcss-html": "^1.6.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-html": "^1.1.0",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^7.2.0"
   }
 }
