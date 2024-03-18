@@ -1,7 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
+import NavLink from "./NavLink.astro";
 
-const routes = [
+const columns = [
   [
     "Resources",
     [
@@ -31,86 +32,65 @@ const routes = [
       ["https://www.facebook.com/codeforsanfrancisco", "facebook", true],
       ["https://www.linkedin.com/company/18115347/", "linkedin", true],
       ["https://github.com/sfbrigade/", "github", true],
-      ["http://c4sf.me/slack", "slack", true],
+      ["https://c4sf.me/slack", "slack", true],
       ["https://www.meetup.com/sfcivictech/", "meetup", true],
     ],
   ],
 ] as const;
-// because of annoying differences between dev and build modes, due to this
-// behavior (https://github.com/withastro/astro/issues/5630), always remove
-// any trailing slash so currentPage can match the pages above
-const fullPath = Astro.url.pathname.replace(/\/$/, "");
-const currentPage = fullPath.slice(fullPath.lastIndexOf("/") + 1);
 ---
 
-<nav class="container">
-  <ul class="grid footer-list container">
-    {
-      routes.map(([cat, links]) => (
-        <li class="footer-list-item">
-          <h3 class="footer-list-cat-name contrast">{cat}</h3>
-          <ul class="footer-list-cat-list">
-            {links.map(([page, label, needsIcon]) => (
-              <li class="footer-list-cat-list-item container">
-                {needsIcon ? (
-                  <span class="icon-container">
-                    <Icon name={"fa:" + label} />{" "}
-                  </span>
-                ) : (
-                  ""
-                )}{" "}
-                <a
-                  href={page}
-                  aria-current={currentPage === page ? "page" : false}
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))
-    }
-  </ul>
-</nav>
+<footer class="container">
+	<nav>
+		{columns.map(([cat, links]) => (
+			<div>
+				<h3>{cat}</h3>
+				<ul>
+					{links.map(([page, label, needsIcon]) => (
+						<li class="footer-list-cat-list-item ">
+							{needsIcon &&
+								// adding a class attribute to the <Icon> component works just fine
+								// but TS complains, so tell it to keep quiet
+								// @ts-ignore
+								<Icon name={"fa:" + label} class={"icon"} />
+							}
+							<NavLink href={page}>
+								{label}
+							</NavLink>
+						</li>
+					))}
+				</ul>
+			</div>
+		))}
+	</nav>
+</footer>
 
 <style>
-  a[aria-current] {
-    --color: var(--contrast);
-    cursor: default;
-    pointer-events: none;
-  }
-  .nav-header {
-    display: flex;
-  }
-  .footer-list {
-    /*display: flex;*/
-    align-items: start;
-  }
-  .footer-list-item {
-    flex: 1;
-    list-style-type: none;
-    vertical-align: top;
-  }
-  .footer-list-cat-name {
+	h3 {
+		font-size: 1.25rem;
     margin: 0;
     text-transform: uppercase;
   }
-  .footer-list-cat-list {
+
+  ul {
+		--nav-element-spacing-horizontal: 0;
     align-items: start;
     display: flex;
     flex-direction: column;
-    margin-left: 0;
   }
-  .footer-list-cat-list-item {
-    list-style-type: none;
+
+	ul:first-of-type, ul:last-of-type {
+		margin-left: initial;
+		margin-right: initial;
+	}
+
+  li {
     margin: 0;
     padding: 0;
   }
 
-  .icon-container {
+  .icon {
     display: inline-block;
-    min-width: 36px;
+    min-width: 1.5rem;
     text-align: center;
   }
 </style>
