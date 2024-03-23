@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Post from "@/components/Post.astro";
+
+let posts;
+
+try {
+	const res = await fetch("http://localhost:3001/api/posts");
+
+	posts = await res.json();
+} catch (e) {
+	console.error(e);
+}
+---
+
+<BaseLayout title="Posts">
+	{
+		posts?.docs?.map((post) => <Post post={post} />)
+	}
+</BaseLayout>
