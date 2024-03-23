@@ -1,14 +1,4 @@
 services:
-  astro:
-    container_name: ${NAME}-astro
-    restart: unless-stopped
-    build:
-      context: astro
-    networks:
-      - front
-    depends_on:
-      - payload
-
   payload:
     container_name: ${NAME}-payload
     restart: unless-stopped

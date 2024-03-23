@@ -1,16 +1,16 @@
 services:
-  astro:
-    build:
-      context: astro
-      target: prod
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.${NAME}-astro.rule=Host(`${ASTRO_HOST}`)"
-      - "traefik.http.routers.${NAME}-astro.entrypoints=https"
-      - "traefik.http.routers.${NAME}-astro.tls.certresolver=httpresolver"
-      - traefik.docker.network=traefik_network
-    networks:
-      - traefik_network
+#  astro:
+#    build:
+#      context: astro
+#      target: prod
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.${NAME}-astro.rule=Host(`${ASTRO_HOST}`)"
+#      - "traefik.http.routers.${NAME}-astro.entrypoints=https"
+#      - "traefik.http.routers.${NAME}-astro.tls.certresolver=httpresolver"
+#      - traefik.docker.network=traefik_network
+#    networks:
+#      - traefik_network
 
   payload:
     build:
