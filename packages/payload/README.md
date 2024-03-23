@@ -1,3 +1,18 @@
+# Payload and Astro
+
+## Usage
+
+The `payload` package in the monorepo is set up to work with the `astro` package.  To start it, open two terminals from the root of the monorepo.  In one run `npm run payload:dev` to start the Payload CMS docker image.  In the other, run `npm run astro:dev` to start the Astro server.
+
+You can then go to `localhost:3001` and create a login for the local Payload instance.  Then create some posts via the admin UI.
+
+On the Astro site, click the Payload link in the header to render the posts that you created in the CMS.
+
+<br>
+
+<details>
+<summary>The info below is from the original readme for the Astroad package.</summary>
+
 # Astroad
 
 Astroad is a pre-configured setup for Astro and Payloadcms, designed to make it easy for you to start building your website. With Astroad, you'll have a complete development environment that you can run locally using Docker. This setup simplifies the testing and development of your website before deploying it to a production environment.
@@ -64,3 +79,4 @@ Deployment is handled by a Github Actions Workflow on every push. It logs into t
 Because Astro is completely static, a content change in the CMS must trigger a new build of Astro. Therefore, there’s a `payload.yml` workflow that gets triggered by a webhook after every content change from Payload.
 
 Ensure you have Traefik set up as a reverse proxy before deployment. The prod script will launch your site in a production-ready environment.
+</details>

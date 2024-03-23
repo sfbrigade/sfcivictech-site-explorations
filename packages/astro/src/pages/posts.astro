@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Post from "@/components/Post.astro";
 
 let posts;
 
@@ -14,9 +15,6 @@ try {
 
 <BaseLayout title="Posts">
 	{
-		posts?.docs?.map((post) => (
-			<h2 set:html={post.title} />
-			<pre>{JSON.stringify(post, null, 2)}</pre>
-		))
+		posts?.docs?.map((post) => <Post post={post} />)
 	}
 </BaseLayout>

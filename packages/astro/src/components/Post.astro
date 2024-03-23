@@ -1,0 +1,33 @@
+---
+import { getContentArray } from "@/utils/getContentArray";
+
+type Post = {
+	title: string;
+	content: any[];
+}
+
+interface Props {
+	post: Post;
+}
+
+const { post: { title, content } } = Astro.props;
+const contentNodes = getContentArray(content);
+---
+
+<article>
+	<h2 set:html={title} />
+	{contentNodes.map((node) => {
+		if (typeof node === "string") {
+			return <Fragment set:html={node} />;
+		} else {
+			return (
+				<img
+					src={`http://localhost:3001/media/${node.src}`}
+					width={node.width}
+					height={node.height}
+					alt="whatever"
+				/>
+			);
+		}
+	})}
+</article>
