@@ -5,5 +5,8 @@
   ],
   "scripts": {
     "astro:dev": "npm run dev -w astro"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.0"
   }
 }
