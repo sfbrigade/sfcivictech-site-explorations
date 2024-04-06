@@ -1,12 +1,18 @@
-const { Octokit } = require('octokit');
-require('dotenv').config();
-const octokit = new Octokit({
-    auth: process.env.GITHUB_API_TOKEN
-}); 
+import type { APIRoute } from 'astro';
+import { Octokit } from 'octokit';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const ORG = 'sfbrigade';
+export const GET: APIRoute = async () => {
+    
 
-async function getRepos() {
+    const octokit = new Octokit({
+        auth: process.env.GITHUB_API_TOKEN,
+    });
+
+
+    const ORG = 'sfbrigade';
+
     try {
         const response = await octokit.request(`GET /orgs/${ORG}/repos`, {
             org: 'sfbrigade',
@@ -16,7 +22,7 @@ async function getRepos() {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
-        const repoInfo = await Promise.all(response.data.map(async repo => ({
+        const repoInfo = await Promise.all(response.data.map(async (repo: { name: any; description: any; default_branch: any; language: any; languages_url: any; topics: any; contributors_url: any; archived: any; pushed_at: any; updated_at: any; created_at:any  }) => ({
             name: repo.name,
             description: repo.description,
             readMe: `https://raw.githubusercontent.com/${ORG}/${repo.name}/${repo.default_branch}/README.md`,
@@ -25,16 +31,15 @@ async function getRepos() {
             topics: repo.topics,
             contributors: repo.contributors_url,
             archived: repo.archived,
+            last_pushed: repo.pushed_at,
+            last_updated: repo.updated_at,
+            created: repo.created_at
         })));
         console.log(repoInfo);
         
-        return repoInfo;
+        return new Response(JSON.stringify(repoInfo));
     } catch (error) {
         console.error(error);
-        return { message: 'Internal server error' };
+        return new Response(JSON.stringify({ message: 'Internal server error' }));
     }
 }
-
-module.exports = { 
-    getRepos 
-};

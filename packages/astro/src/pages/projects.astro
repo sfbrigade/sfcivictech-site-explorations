@@ -4,58 +4,34 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 //The below import is for the markdown from the local file
 //The local markdown provides for much cleaner code imo
-import * as proj1 from "../content/projects/test_project_1.md";
+
+
+
+
 
 //The below imports are for the markdown from the url
-import grayMatter from 'gray-matter';
-import { marked } from 'marked';
 
-const response = await fetch('https://raw.githubusercontent.com/MarcosG119/test-repository-for-md-html/main/test_project-1.md');
-const markdownText  = await response.text();
-const {data, content} = grayMatter(markdownText);
+let json;
 
-const htmlContent = marked(content);
+try {
+    const response = await fetch("http://localhost:4321/api/getProjects", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    json = await response.json();
+} catch (error) {
+    console.error("Error:", error);
+}
 
-const lifeLineResponse = await fetch('https://raw.githubusercontent.com/sfbrigade/sf-lifeline/dev/README.md');
-const lifeLineMarkdownText  = await lifeLineResponse.text();
-const {data: lifeLineData, content: lifeLineContent} = grayMatter(lifeLineMarkdownText);
-const lifeLineHtmlContent = marked(lifeLineContent);
 ---
 
 <BaseLayout title="Projects">
-	<p>Projects</p>
 
-    <h1> Test project from local md </h1>
-
-    <div>
-        <h2> Project title: {proj1.frontmatter.title} </h2>
-        <h3> Leader: {proj1.frontmatter.leader } </h3>
-        <p> description: {proj1.frontmatter.description }</p>
-    </div>
-
-    <h1> Test project from lifeline </h1>
-    <div>
-        <h2> {lifeLineData.title} </h2>
-        <h3> Leader: {lifeLineData.leader } </h3>
-        <p> {lifeLineData.description }</p>
-
-        <script></script>
-        <h2> This content below is the whole markdown generated as html. It does not recognize the frontmatter. </h2>
-        <article set:html={lifeLineHtmlContent} />
+    <div>{JSON.stringify(json)}</div>
     
-    </div>
 
-    <h1> Test project from url </h1>
-    <div>
-        <h2> {data.title} </h2>
-        <h3> Leader: {data.leader } </h3>
-        <p> {data.description }</p>
-
-        <script></script>
-        <h2> This content below is the whole markdown generated as html. It does not recognize the frontmatter. </h2>
-        <article set:html={htmlContent} />
-    
-    </div>
 </BaseLayout>
 
 
