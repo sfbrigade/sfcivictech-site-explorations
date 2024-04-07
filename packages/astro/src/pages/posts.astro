@@ -2,19 +2,18 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Post from "@/components/Post.astro";
 
+const payloadURL = import.meta.env.PAYLOAD_BASE_URL;
 let posts;
 
 try {
-	const res = await fetch("http://localhost:3001/api/posts");
+	const res = await fetch(`${payloadURL}/api/posts`);
 
-	posts = await res.json();
+	posts = (await res.json()).docs;
 } catch (e) {
 	console.error(e);
 }
 ---
 
 <BaseLayout title="Posts">
-	{
-		posts?.docs?.map((post) => <Post post={post} />)
-	}
+	{posts?.map((post) => <Post post={post} />)}
 </BaseLayout>
