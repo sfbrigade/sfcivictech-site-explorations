@@ -35,7 +35,7 @@ export const GET: APIRoute = async ({ params }) => {
             last_updated: repo.updated_at,
             created: repo.created_at
         })));
-        console.log(repoInfo);
+        // console.log(repoInfo);
         
         return new Response(JSON.stringify(repoInfo));
     } catch (error) {
@@ -43,4 +43,3 @@ export const GET: APIRoute = async ({ params }) => {
         return new Response(JSON.stringify({ message: 'Internal server error' }));
     }
 }
-
